@@ -1,6 +1,6 @@
 {
   "name": "pkg-can-install",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Verify that a package will be able to install after it is published.",
   "main": "index.js",
   "bin": {
