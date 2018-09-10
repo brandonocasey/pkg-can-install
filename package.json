@@ -4,7 +4,7 @@
   "description": "Verify that a package will be able to install after it is published.",
   "main": "index.js",
   "bin": {
-    "pkg-can-install": "pkg-can-install.js"
+    "pkg-can-install": "index.js"
   },
   "scripts": {
     "lint": "vjsstandard",
