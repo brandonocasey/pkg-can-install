@@ -14,6 +14,12 @@ const shell = require('shelljs');
 // create the working dir
 shell.mkdir(WORKING_DIR);
 
+const cleanup = () => shell.rm('-rf', WORKING_DIR);
+
+process.on('SIGINT', cleanup);
+process.on('SIGQUIT', cleanup);
+process.on('exit', cleanup);
+
 // get a list of all files to copy, minus node_modules
 const files = shell.ls('-A', PKG_DIR)
   .filter((f) => !(/node_modules/).test(f))
