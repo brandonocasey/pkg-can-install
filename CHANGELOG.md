@@ -1,3 +1,12 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/brandonocasey/pkg-can-install/compare/v1.0.3...v1.0.4) (2019-08-21)
+
+### Chores
+
+* **package:** add shelljs ([0f7a2b1](https://github.com/brandonocasey/pkg-can-install/commit/0f7a2b1))
+* **package:** update lint-staged to version 8.1.5 ([#6](https://github.com/brandonocasey/pkg-can-install/issues/6)) ([05b9b5f](https://github.com/brandonocasey/pkg-can-install/commit/05b9b5f))
+* **package:** update videojs-generator-verify to version 1.2.0 🚀 ([#5](https://github.com/brandonocasey/pkg-can-install/issues/5)) ([cb7f46f](https://github.com/brandonocasey/pkg-can-install/commit/cb7f46f))
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/brandonocasey/pkg-can-install/compare/v1.0.2...v1.0.3) (2018-09-12)
 
