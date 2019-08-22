@@ -13,7 +13,7 @@
     "lint": "vjsstandard",
     "test": "npm run test:unit && npm run test:verify",
     "test:unit": "npm run lint",
-    "test:verify": "vjsverify --skip-es-check --verbose",
+    "test:verify": "node index.js",
     "preversion": "npm test",
     "version": "is-prerelease || npm run update-changelog && git add CHANGELOG.md",
     "update-changelog": "conventional-changelog -p videojs -i CHANGELOG.md -s",
