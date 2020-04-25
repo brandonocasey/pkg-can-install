@@ -21,7 +21,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@videojs/generator-helpers": "~1.2.0",
