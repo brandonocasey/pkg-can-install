@@ -5,39 +5,43 @@
 const path = require('path');
 const spawnSync = require('child_process').spawnSync;
 const crypto = require('crypto');
-const TEMP_DIR = require('os').tmpdir();
-const PKG_DIR = process.cwd();
-const randomString = crypto.randomBytes(20).toString('hex');
-const WORKING_DIR = path.join(TEMP_DIR, randomString);
+const os = require('os');
+const WORKING_DIR = path.join(os.tmpdir(), crypto.randomBytes(20).toString('hex'));
+const fs = require('fs');
+const exitHook = require('exit-hook');
 const shell = require('shelljs');
 
-// create the working dir
-shell.mkdir(WORKING_DIR);
+exitHook(() => shell.rm('-rf', WORKING_DIR));
 
-const cleanup = () => shell.rm('-rf', WORKING_DIR);
+// create the working dir with a package.json
+fs.mkdirSync(WORKING_DIR);
+fs.writeFileSync(path.join(WORKING_DIR, 'package.json'), JSON.stringify({
+  name: 'pkg-can-install-test',
+  version: '1.0.0',
+  description: '',
+  main: 'index.js',
+  scripts: {
+    test: 'echo "Error: no test specified" && exit 1'
+  },
+  keywords: [],
+  author: '',
+  license: 'ISC'
+}));
 
-process.on('SIGINT', cleanup);
-process.on('SIGQUIT', cleanup);
-process.on('exit', cleanup);
-
-// get a list of all files to copy, minus node_modules
-const files = shell.ls('-A', PKG_DIR)
-  .filter((f) => !(/node_modules/).test(f))
-  .map((f) => path.join(process.cwd(), f));
-
-// copy all files to working_dir
-shell.cp('-R', files, WORKING_DIR);
-
-// try the install
-const result = spawnSync('npm', ['i', '--production'], {cwd: WORKING_DIR});
+// try to install the current directory package into WORKING_DIR
+const result = spawnSync('npm', [
+  'i',
+  '--prefer-online',
+  '--production',
+  '--no-audit',
+  '--progress=false',
+  process.cwd()
+], {cwd: WORKING_DIR});
 
 if (result.status !== 0) {
   const error = result.stderr.toString().trim();
 
   console.error(`pkg-can-install: error during install:\n\n${error}\n`);
 }
-
-// cleanup
-shell.rm('-rf', WORKING_DIR);
 
 process.exit(result.status);
