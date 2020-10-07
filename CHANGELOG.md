@@ -1,3 +1,20 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/brandonocasey/pkg-can-install/compare/v1.0.4...v2.0.0) (2020-10-07)
+
+### Features
+
+* faster runtime via temp dir install ([9d85787](https://github.com/brandonocasey/pkg-can-install/commit/9d85787))
+
+### Tests
+
+* fix travis ([fe5652f](https://github.com/brandonocasey/pkg-can-install/commit/fe5652f))
+
+
+### BREAKING CHANGES
+
+* internally functionality is different. If you are not
+relying on that. Nothing should be broken for you.
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/brandonocasey/pkg-can-install/compare/v1.0.3...v1.0.4) (2019-08-21)
 
